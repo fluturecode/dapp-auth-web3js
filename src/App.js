@@ -2,22 +2,23 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const detectCurrentProvider = () => {
+    let provider;
+    if (window.ethereum) {
+      provider = window.ethereum;
+    } else if (window.web3) {
+      provider = window.web3.detectCurrentProvider;
+    } else {
+      console.log('Non-ethereum browser detected. Please install Metamask.')
+    }
+    return provider;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className='app-header'>
+        <h1>React DAPP with Auths</h1>
+      </div>
     </div>
   );
 }
