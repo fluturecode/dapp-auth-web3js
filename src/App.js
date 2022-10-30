@@ -5,6 +5,7 @@ import './App.css';
 function App() {
 
   const [isConnected, setIsConnected] = useState(false);
+  const [ethBalance, setEthBalance] = useState('');
 
   const detectCurrentProvider = () => {
     let provider;
@@ -27,6 +28,7 @@ function App() {
         const userAccount = await web3.eth.getAccounts();
         const account = userAccount[0];
         let ethBalance = await web3.eth.getBalance(account);
+        setEthBalance(ethBalance);
         setIsConnected(true);
         }
     } catch(err) {
@@ -52,6 +54,17 @@ function App() {
           </div>
         )}
       </div>
+      {isConnected && (
+        <div className='app-wrapper'>
+          <div className='app-detals'>
+            <h2>You are connected to Metamask.</h2>
+            <div className='app-balance'>
+              <span>Balance:</span>
+              {ethBalance}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
