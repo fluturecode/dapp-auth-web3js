@@ -34,6 +34,10 @@ function App() {
     }
   }
 
+  const onDisconnect = () => {
+    setIsConnected(false);
+  }
+
   return (
     <div className='app'>
       <div className='app-header'>
